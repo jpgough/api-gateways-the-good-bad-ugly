@@ -1,0 +1,14 @@
+version: "3"
+services:
+  gateway:
+    image: jpgough/good-bad-ugly-gateway
+    ports:
+      - "8082:8082"
+  user-details:
+    image: jpgough/good-bad-ugly-user-details
+    ports:
+      - "8081:8081"
+  attendees:
+    image: jpgough/good-bad-ugly-attendees
+    ports:
+      - "8080:8080"
