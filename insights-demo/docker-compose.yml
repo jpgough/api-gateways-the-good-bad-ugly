@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  gateway:
+    image: jpgough/vanilla-scg
+    ports:
+      - "8082:8082"
+    volumes:
+      - "./sample_properties:/etc/gateway/config"
+#      - type: bind
+#        source: "./sample_properties"
+#        target: "/etc/gateway/config"
+#        read_only: true
+  user-details:
+    image: jpgough/good-bad-ugly-user-details
+    ports:
+      - "8081:8081"
+  attendees:
+    image: jpgough/good-bad-ugly-attendees
+    ports:
+      - "8080:8080"
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
