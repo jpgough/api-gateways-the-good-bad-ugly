@@ -2,43 +2,27 @@ global:
   scrape_interval:     5s # By default, scrape targets every 15 seconds.
   evaluation_interval: 5s
 
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
-   # Details to connect Prometheus with Spring Boot actuator end point to scrap the data
-  # The job name is added as a label `job=` to any time series scraped from this config.
+
   - job_name: 'attendees'
-
-    # Actuator end point to collect the data.
     metrics_path: '/actuator/prometheus'
-
-    #target end point. We are using the Docker, so local host will not work. You can change it with
-    #localhost if not using the Docker.
     static_configs:
       - targets: [
         'attendees:8080'
       ]
+
   - job_name: 'gateway'
-
-    # Actuator end point to collect the data.
     metrics_path: '/actuator/prometheus'
-
-    #target end point. We are using the Docker, so local host will not work. You can change it with
-    #localhost if not using the Docker.
     static_configs:
       - targets: [
         'gateway:8082'
       ]
+
   - job_name: 'user-details'
-
-    # Actuator end point to collect the data.
     metrics_path: '/actuator/prometheus'
-
-    #target end point. We are using the Docker, so local host will not work. You can change it with
-    #localhost if not using the Docker.
     static_configs:
       - targets: [
         'user-details:8081'

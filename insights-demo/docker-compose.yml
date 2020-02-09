@@ -6,10 +6,6 @@ services:
       - "8082:8082"
     volumes:
       - "./sample_properties:/etc/gateway/config"
-#      - type: bind
-#        source: "./sample_properties"
-#        target: "/etc/gateway/config"
-#        read_only: true
   user-details:
     image: jpgough/good-bad-ugly-user-details
     ports:
