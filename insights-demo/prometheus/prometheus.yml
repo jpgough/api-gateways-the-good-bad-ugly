@@ -1,0 +1,29 @@
+global:
+  scrape_interval:     5s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'attendees'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [
+        'attendees:8080'
+      ]
+
+  - job_name: 'gateway'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [
+        'gateway:8082'
+      ]
+
+  - job_name: 'user-details'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [
+        'user-details:8081'
+      ]

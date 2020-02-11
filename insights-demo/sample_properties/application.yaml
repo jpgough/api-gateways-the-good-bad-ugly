@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    gateway:
+      default-filters:
+      routes:
+        - id: attendees
+          uri: http://attendees:8080/attendees
+          predicates:
+            - Path=/attendees/**
+          filters:
+            - RewritePath=/attendees/(?<segment>.*), /$\{segment}/
+        - id: users
+          uri: http://user-details:8081/users
+          predicates:
+            - Path=/users/**
+          filters:
+            - RewritePath=/users/(?<segment>.*), /$\{segment}/
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 8082
