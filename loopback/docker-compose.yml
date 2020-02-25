@@ -4,6 +4,8 @@ services:
     image: jpgough/good-bad-ugly-gateway
     ports:
       - "8082:8082"
+      - "8083:8083"
+      - "9090:9090"
   user-details:
     image: jpgough/good-bad-ugly-user-details
     ports:
